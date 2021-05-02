@@ -1,5 +1,6 @@
 import speech_recognition as sr 
 import moviepy.editor as mp
+import os
 
 # * TO-DO *
 #?     -Find a bypass for the 10m limit
@@ -11,10 +12,10 @@ import moviepy.editor as mp
 #?    -Make it so you can enter a file OR url
 
 #?    - Add frontend / webapp?
-#     -- simple frontend 
+#     -- simple frontend https://realpython.com/python-web-applications/
 
 
-clip = mp.VideoFileClip(r"test.mp4") 
+clip = mp.VideoFileClip(r"target.mov") 
  
 clip.audio.write_audiofile(r"converted.wav")
 
@@ -28,6 +29,8 @@ with audio as source:
   audio_file = r.record(source)
 result = r.recognize_google(audio_file)
 
+os.remove("target.mov")
+os.remove("converted.wav")
 # exporting the result 
 with open('recognized.txt',mode ='w') as file: 
    file.write("Recognized Speech:") 
